@@ -1,0 +1,42 @@
+<h2>Lista de Alumnos</h2>
+
+<input type="text" [(ngModel)]="filtrado" placeholder="Filtrar por nombre">
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Sexo</th>
+        <th>Notas</th>
+        <th>Nota Final</th>
+        <th>Aprobado</th>
+    </tr>
+    <tr *ngFor="let alumno of getAlumnosFiltrados();let i = index">
+        <td>{{ alumno.nombre }}</td>
+        <td>{{ alumno.sexo }}</td>
+        <td>{{ alumno.notas }}</td>
+        <td>{{ alumno.notaFinal }}</td>
+        <td>{{ alumno.notaFinal > 6 ? 'Sí' : 'No' }}</td>
+        <td>
+            <button (click)="borrarAlumno(i)">Borrar</button>
+        </td>
+
+    </tr>
+
+</table>
+
+<input type="checkbox" [(ngModel)]="aprobados"> Mostrar solo aprobados
+
+<hr>
+
+<h3>Agregar Alumno</h3>
+
+<label>Nombre:</label>
+<input type="text" #nombre>
+
+<label>Sexo:</label>
+<input type="text" #sexo>
+
+<label>Notas:</label>
+<input type="text" #notas>
+
+<button (click)="agregarAlumno(nombre.value, sexo.value, notas.value.split(','))">Agregar</button>
